@@ -1,0 +1,28 @@
+
+.Input__Container{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 20px 0px;
+
+}
+
+
+.Input__Title{
+    margin: 10px 2px;
+    font-size: 21px;
+}
+
+.Input__Input{
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    font-size: 1.2rem;
+    transition: 0.2s;
+    color: white;
+
+    &:focus{
+        border: 1px solid rgba(0, 0, 0, 0.5);
+    }
+}
