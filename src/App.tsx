@@ -1,6 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import './App.css'
-import axios from "axios"
 import HomePage from "./pages/HomePage";
 import { MyCourses } from "./pages/MyCourses";
 import { CreateCourse } from "./pages/CreateCourse";
