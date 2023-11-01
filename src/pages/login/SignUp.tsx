@@ -13,6 +13,7 @@ const SignUp: React.FC = () => {
   const [errorMessagePassword, setErrorMessagePassword] = useState<string>("");
   const [errorMessageConfirmPassword, setErrorMessageConfirmPassword] =
     useState<string>("");
+  const [isRegistered, setIsRegistered] = useState<boolean>(false);
 
   const checkFields = (): boolean => {
     let ok = true;
@@ -49,45 +50,50 @@ const SignUp: React.FC = () => {
     if (!checkFields()) {
       return;
     }
+    setIsRegistered(true);
     console.log(email, password, confirmPassword);
   };
   return (
     <Layout>
-      <div className="Login__Container">
-        <img src={fiubaLogo} />
-        <div className="Login__Container" style={{ width: "40%" }}>
-          <Input
-            style={{ width: "100%" }}
-            title="Email"
-            errorMessage={errorMessageEmail}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-          <Input
-            style={{ width: "100%" }}
-            title="Password"
-            errorMessage={errorMessagePassword}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-          <Input
-            style={{ width: "100%" }}
-            title="Confirm Password"
-            errorMessage={errorMessageConfirmPassword}
-            onChange={(event) => setConfirmPassword(event.target.value)}
-          />
-          <Button
-            style={{
-              width: "100%",
-              marginTop: errorMessageConfirmPassword === "" ? "30px" : "0px",
-              paddingTop: "10px",
-              paddingBottom: "10px",
-              paddingLeft: "0px",
-              paddingRight: "0px",
-            }}
-            title="Register"
-            onClick={() => onSignUp()}
-          />
+      {!isRegistered ? (
+        <div className="Login__Container">
+          <img src={fiubaLogo} />
+          <div className="Login__Container" style={{ width: "40%" }}>
+            <Input
+              style={{ width: "100%" }}
+              title="Email"
+              errorMessage={errorMessageEmail}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+            <Input
+              style={{ width: "100%" }}
+              title="Password"
+              errorMessage={errorMessagePassword}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+            <Input
+              style={{ width: "100%" }}
+              title="Confirm Password"
+              errorMessage={errorMessageConfirmPassword}
+              onChange={(event) => setConfirmPassword(event.target.value)}
+            />
+            <Button
+              style={{
+                width: "100%",
+                marginTop: errorMessageConfirmPassword === "" ? "30px" : "0px",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+                paddingLeft: "0px",
+                paddingRight: "0px",
+              }}
+              title="Register"
+              onClick={() => onSignUp()}
+            />
+          </div>
         </div>
-      </div>
+      ) : (
+        <h1>Te has registrado con exito, Felicitaciones!</h1>
+      )}
     </Layout>
   );
 };

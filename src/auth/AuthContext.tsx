@@ -13,14 +13,22 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(() => {
+    // Al iniciar, intenta obtener el estado de autenticación de localStorage
+    const storedLoggedIn = localStorage.getItem("loggedIn");
+    return storedLoggedIn === "true";
+  });
 
   function login() {
     setLoggedIn(true);
+    // Cuando el usuario inicia sesión, guarda el estado en localStorage
+    localStorage.setItem("loggedIn", "true");
   }
 
   function logout() {
     setLoggedIn(false);
+    // Cuando el usuario cierra sesión, borra el estado de localStorage
+    localStorage.removeItem("loggedIn");
   }
 
   return (

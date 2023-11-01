@@ -26,15 +26,15 @@ const router = createBrowserRouter([
     element: <CreateCourse />,
   },
   {
-    path: "/signup",
-    element: <SignUp />,
-  },
-  {
     element: <CreateCourse />,
   },
   {
     path: "/courses/:id",
     element: <CoursePage />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
   },
 ]);
 
