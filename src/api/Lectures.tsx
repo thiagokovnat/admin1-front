@@ -1,4 +1,4 @@
-import { CreateLectureRequest, UploadVideoResponse } from "../models/Lectures";
+import { CreateLectureRequest, Lecture, UploadVideoResponse } from "../models/Lectures";
 import LearningApi from './LearningApi';
 
 export const uploadLecture = async (params: CreateLectureRequest) => {
@@ -21,3 +21,23 @@ export const uploadLecture = async (params: CreateLectureRequest) => {
         throw error;
     }
 };
+
+
+export const getLectures = async () => {
+    try {
+        const response = await LearningApi.get("/lectures/list");
+        return response.data.lectures as Lecture[];
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getLecture = async (id: string) => {
+    try {
+        const response = await LearningApi.get(`/lectures/id/${id}`);
+        console.log(response.data)
+        return response.data as Lecture;
+    } catch (error) {
+        throw error;
+    }
+}
