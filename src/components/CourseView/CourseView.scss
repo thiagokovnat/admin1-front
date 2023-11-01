@@ -1,0 +1,21 @@
+.CourseView__Container{
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+    padding: 10px;
+    color: black;
+    min-width: 100px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.CourseView__BackgroundImage{
+    width: 150px;
+    height: auto;
+    position: absolute;
+    left: 0px;
+    top: -20px;
+    rotate: 30deg;
+    opacity: 0.1;
+}

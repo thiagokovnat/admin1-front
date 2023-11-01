@@ -6,6 +6,7 @@ import { CreateCourse } from "./pages/CreateCourse";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/login/SignUp";
 import { AuthProvider } from "./auth/AuthContext";
+import { CoursePage } from "./pages/CoursePage";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,13 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
+  },
+  {
+    element: <CreateCourse />,
+  },
+  {
+    path: "/courses/:id",
+    element: <CoursePage />,
   },
 ]);
 
