@@ -3,7 +3,7 @@ import { Layout } from "../../components/Layout/Layout";
 import fiubaLogo from "../../assets/fiuba.svg";
 import { Input } from "../../components/input/Input";
 import { Button } from "../../components/button/Button";
-import "./Login.scss";
+import "./login.scss";
 import { useAuth } from "../../auth/AuthContext";
 
 const Login: React.FC = () => {
