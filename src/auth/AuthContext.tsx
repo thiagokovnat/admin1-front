@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext } from "react";
 
 interface AuthContextData {
   loggedIn: boolean;
-  login: (token: string, token_type: string) => void;
+  login: (token: string) => void;
   logout: () => void;
 }
 
@@ -19,18 +19,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return storedLoggedIn === "true";
   });
 
-  function login(token: string, token_type: string) {
+  function login(token: string) {
     setLoggedIn(true);
     // Cuando el usuario inicia sesión, guarda el estado en localStorage
     localStorage.setItem("loggedIn", "true");
     localStorage.setItem("token", token);
-    localStorage.setItem("token_type", token_type);
   }
 
   function logout() {
     setLoggedIn(false);
     // Cuando el usuario cierra sesión, borra el estado de localStorage
     localStorage.removeItem("loggedIn");
+    localStorage.removeItem("token");
+    window.location.href = "/";
   }
 
   return (

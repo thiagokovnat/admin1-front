@@ -40,7 +40,7 @@ const Login: React.FC = () => {
     }
     loginService({ username: username, password: password })
       .then((response) => {
-        login(response.data.access_token, response.data.token_type);
+        login(response.data.access_token);
         window.location.href = "/";
       })
       .catch((error) => {

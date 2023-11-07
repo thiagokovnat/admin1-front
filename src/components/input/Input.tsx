@@ -7,6 +7,7 @@ interface Props {
   accept?: string;
   style?: React.CSSProperties;
   errorMessage?: string;
+  value?: any;
 }
 
 export const Input = ({
@@ -16,6 +17,7 @@ export const Input = ({
   accept,
   style,
   errorMessage = "",
+  value
 }: Props) => {
   return (
     <div className="Input__Container" style={style}>
@@ -24,6 +26,7 @@ export const Input = ({
         className={
           errorMessage !== "" ? "Input__ErrorContainer" : "Input__Input"
         }
+        value={value}
         onChange={(event) => onChange(event)}
         type={type}
         accept={accept}

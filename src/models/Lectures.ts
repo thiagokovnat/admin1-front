@@ -13,3 +13,16 @@ export interface Lecture{
     title: string;
     id: string;
 }
+
+export interface AddVideoToCourseParams{
+    title: string;
+    id: string;
+    order: number;
+    course_id: number;
+}
+
+export interface LectureByCourse{
+    id: string;
+    title: string;
+    order: number;
+}

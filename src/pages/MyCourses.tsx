@@ -3,7 +3,7 @@ import { Layout } from "../components/Layout/Layout";
 import { Button } from "../components/button/Button";
 import { useEffect, useState } from "react";
 import { Lecture } from "../models/Lectures";
-import { getLectures } from "../api/Lectures";
+import { getLectures, getMyLectures } from "../api/Lectures";
 import { CourseView } from "../components/CourseView/CourseView";
 
 export const MyCourses = () => {
@@ -15,7 +15,7 @@ export const MyCourses = () => {
   };
 
   useEffect(() => {
-    getLectures().then(setLectures);
+    getMyLectures().then(setLectures);
   }, []);
 
   return (

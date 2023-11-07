@@ -82,7 +82,7 @@ const SignUp: React.FC = () => {
           <div className="Login__Container" style={{ width: "40%" }}>
             <Input
               style={{ width: "100%" }}
-              title="Username"
+              title="Nombre de usuario"
               errorMessage={errorMessageUsername}
               onChange={(event) => setUsername(event.target.value)}
             />

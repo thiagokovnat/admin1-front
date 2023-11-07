@@ -16,7 +16,7 @@ export const Layout = (props: Props) => {
           <>
             <Link to={"/"}>Home</Link>
             <div className="Layout__Separator" />
-            <Link to={"/courses"}>My Courses</Link>
+            <Link to={"/courses"}>Mis Cursos</Link>
             <div
               style={{
                 right: "40px",
@@ -26,14 +26,14 @@ export const Layout = (props: Props) => {
               }}
               onClick={logout}
             >
-              Logout
+              Cerrar Sesión
             </div>
           </>
         ) : (
           <>
             <Link to={"/login"}>Login</Link>
             <div className="Layout__Separator" />
-            <Link to={"/signup"}>Sign Up</Link>
+            <Link to={"/signup"}>Registrarse</Link>
           </>
         )}
       </div>

@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
       {loggedIn ? (
         <h1>Home</h1>
       ) : (
-        <h1>Inicia sesion para comenzar tu nuevo viaje educativo!</h1>
+        <h1>Inicia sesión para comenzar tu nuevo viaje educativo!</h1>
       )}
     </Layout>
   );
