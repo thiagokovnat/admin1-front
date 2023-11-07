@@ -3,7 +3,7 @@ import { Layout } from "../components/Layout/Layout";
 import { Button } from "../components/button/Button";
 import { useEffect, useState } from "react";
 import { Lecture } from "../models/Lectures";
-import { getLectures, getMyLectures } from "../api/Lectures";
+import {getMyLectures } from "../api/Lectures";
 import { CourseView } from "../components/CourseView/CourseView";
 
 export const MyCourses = () => {
@@ -13,6 +13,10 @@ export const MyCourses = () => {
   const onCreateCourse = () => {
     navigate("/courses/new");
   };
+
+  const onCourseSelect = (lecture: Lecture) => {
+      navigate("/courses/" + lecture.id)
+  }
 
   useEffect(() => {
     getMyLectures().then(setLectures);
@@ -30,7 +34,7 @@ export const MyCourses = () => {
         }}
       >
         {lectures.map((lecture) => (
-          <CourseView lecture={lecture} />
+          <CourseView lecture={lecture} onClick={() => {onCourseSelect(lecture)}}/>
         ))}
       </div>
       <Button title="Crear Curso" onClick={onCreateCourse} />

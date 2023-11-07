@@ -1,6 +1,5 @@
 import {
   AddVideoToCourseParams,
-  CreateLectureRequest,
   Lecture,
   LectureByCourse,
   UploadVideoResponse,
@@ -98,3 +97,4 @@ export const getLecturesByCourseId = async (courseId: number) => {
     throw error;
   }
 };
+

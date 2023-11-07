@@ -95,7 +95,7 @@ export const CoursePage = () => {
     );
 
     await Promise.all(
-      allVideos.map(async (lecture, index) => {
+      allVideos.map(async (lecture) => {
         return addVideoToCourse({
           id: lecture.videoId,
           course_id: Number(params.id),

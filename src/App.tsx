@@ -7,6 +7,8 @@ import Login from "./pages/login/Login";
 import SignUp from "./pages/login/SignUp";
 import { AuthProvider } from "./auth/AuthContext";
 import { CoursePage } from "./pages/CoursePage";
+import { AllCourses } from "./pages/AllCourses";
+import { ViewCourse } from "./pages/ViewCourse";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <SignUp />,
   },
+  {
+    path: "/courses/all",
+    element: <AllCourses />
+  },
+  {
+    path: "/courses/:id/view",
+    element: <ViewCourse />,
+  }
 ]);
 
 function App() {
