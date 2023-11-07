@@ -2,21 +2,15 @@ import "./Input.scss";
 
 interface Props {
   title: string;
-  onChange:
-    | ((value: React.ChangeEvent<HTMLInputElement>) => void)
-    | ((value: React.ChangeEvent<HTMLTextAreaElement>) => void);
-  type?: string;
-  accept?: string;
+  onChange: (value: React.ChangeEvent<HTMLTextAreaElement>) => void;
   style?: React.CSSProperties;
   errorMessage?: string;
   value?: any;
 }
 
-export const Input = ({
+export const Textarea = ({
   title,
   onChange,
-  type = "text",
-  accept,
   style,
   errorMessage = "",
   value,
@@ -24,15 +18,14 @@ export const Input = ({
   return (
     <div className="Input__Container" style={style}>
       <p className="Input__Title">{title}</p>
-      <input
+      <textarea
         className={
           errorMessage !== "" ? "Input__ErrorContainer" : "Input__Input"
         }
         value={value}
         onChange={(event) => onChange(event as any)}
-        type={type}
-        accept={accept}
       />
+
       <p className="Input__Error">{errorMessage}</p>
     </div>
   );

@@ -7,6 +7,7 @@ import Login from "./pages/login/Login";
 import SignUp from "./pages/login/SignUp";
 import { AuthProvider } from "./auth/AuthContext";
 import { CoursePage } from "./pages/CoursePage";
+import { CreateTask } from "./pages/CreateTask";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,14 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
+  },
+  {
+    path: "/tasks/new/:courseId/:lectureId",
+    element: <CreateTask />,
+  },
+  {
+    path: "/tasks/view/:courseId/:lectureId",
+    element: <CreateTask />,
   },
 ]);
 

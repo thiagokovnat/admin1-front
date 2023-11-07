@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { Layout } from "../components/Layout/Layout";
 import { useEffect, useState } from "react";
 import { Input } from "../components/input/Input";
@@ -12,6 +12,7 @@ import "./CoursePage.scss";
 
 export const CoursePage = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const [lectures, setLectures] = useState<
     {
       title: string;
@@ -110,26 +111,31 @@ export const CoursePage = () => {
     getLectures();
   }, []);
 
+  const onCreateTask = (lectureId: string) => {
+    navigate("/tasks/new/" + params.id + "/" + lectureId);
+  };
+
   return (
     <Layout>
-      <h1>Course {params.id}</h1>
+      <h2>Curso {params.id}</h2>
       <Button title="Agregar Video" onClick={onAddLecture} />
       <table>
         <tr>
           <th>Orden</th>
           <th>Título</th>
           <th>Archivo</th>
+          <th>Tarea</th>
         </tr>
         {lectures.map((lecture, index) => {
           if (lecture.id) {
             return (
-              <tr>
+              <tr key={lecture.id}>
                 <td>{index + 1}</td>
                 <td>
                   <Input
                     value={lecture.title}
                     title=""
-                    onChange={(e) => {
+                    onChange={(e: any) => {
                       onAddTitle(e.target.value, index);
                     }}
                   />
@@ -141,17 +147,24 @@ export const CoursePage = () => {
                     src={`https://staging-acp-api.onrender.com/lectures/video/${lecture.videoId}`}
                   />
                 </td>
+                <td>
+                  <Button
+                    style={{ margin: "auto" }}
+                    title="Create task"
+                    onClick={() => onCreateTask(lecture.id!)}
+                  />
+                </td>
               </tr>
             );
           }
           return (
-            <tr>
+            <tr key={lecture.id}>
               <td>{index + 1}</td>
               <td>
                 <Input
                   value={lecture.title}
                   title=""
-                  onChange={(e) => {
+                  onChange={(e: any) => {
                     onAddTitle(e.target.value, index);
                   }}
                 />
@@ -160,7 +173,9 @@ export const CoursePage = () => {
                 <Input
                   title=""
                   type="file"
-                  onChange={(event) => onAddVideo(event.target.files!, index)}
+                  onChange={(event: any) =>
+                    onAddVideo(event.target.files!, index)
+                  }
                   accept="video/*"
                 />
               </td>
