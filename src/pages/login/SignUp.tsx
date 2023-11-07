@@ -4,8 +4,11 @@ import fiubaLogo from "../../assets/fiuba.svg";
 import { Input } from "../../components/input/Input";
 import { Button } from "../../components/button/Button";
 import "./login.scss";
+import { signupService } from "../../api/Auth";
 
 const SignUp: React.FC = () => {
+  const [username, setUsername] = useState<string>("");
+  const [errorMessageUsername, setErrorMessageUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -14,9 +17,16 @@ const SignUp: React.FC = () => {
   const [errorMessageConfirmPassword, setErrorMessageConfirmPassword] =
     useState<string>("");
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
+  const [signupError, setSignupError] = useState<boolean>(false);
 
   const checkFields = (): boolean => {
     let ok = true;
+    if (username === "") {
+      setErrorMessageUsername("Username is required");
+      ok = false;
+    } else {
+      setErrorMessageUsername("");
+    }
     if (email === "") {
       setErrorMessageEmail("Email is required");
       ok = false;
@@ -46,12 +56,23 @@ const SignUp: React.FC = () => {
     return ok;
   };
 
-  const onSignUp = () => {
+  const onSignUp = async () => {
     if (!checkFields()) {
       return;
     }
-    setIsRegistered(true);
-    console.log(email, password, confirmPassword);
+    signupService({
+      username: username,
+      email: email,
+      password: password,
+    })
+      .then((response) => {
+        setIsRegistered(true);
+        console.log(response);
+      })
+      .catch((error) => {
+        setSignupError(true);
+        console.log(error);
+      });
   };
   return (
     <Layout>
@@ -61,22 +82,36 @@ const SignUp: React.FC = () => {
           <div className="Login__Container" style={{ width: "40%" }}>
             <Input
               style={{ width: "100%" }}
+              title="Username"
+              errorMessage={errorMessageUsername}
+              onChange={(event) => setUsername(event.target.value)}
+            />
+            <Input
+              style={{ width: "100%" }}
               title="Email"
               errorMessage={errorMessageEmail}
               onChange={(event) => setEmail(event.target.value)}
             />
             <Input
               style={{ width: "100%" }}
-              title="Password"
+              title="Contraseña"
+              type="password"
               errorMessage={errorMessagePassword}
               onChange={(event) => setPassword(event.target.value)}
             />
+
             <Input
               style={{ width: "100%" }}
-              title="Confirm Password"
+              title="Confirmar Contraseña"
+              type="password"
               errorMessage={errorMessageConfirmPassword}
               onChange={(event) => setConfirmPassword(event.target.value)}
             />
+            {signupError && (
+              <div className="Login__TextError">
+                Error al registrarse, intente nuevamente
+              </div>
+            )}
             <Button
               style={{
                 width: "100%",
@@ -86,7 +121,7 @@ const SignUp: React.FC = () => {
                 paddingLeft: "0px",
                 paddingRight: "0px",
               }}
-              title="Register"
+              title="Registrar"
               onClick={() => onSignUp()}
             />
           </div>
