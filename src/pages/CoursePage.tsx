@@ -9,6 +9,7 @@ import {
   uploadVideo,
 } from "../api/Lectures";
 import "./CoursePage.scss";
+import { deleteTask } from "../api/Tasks";
 
 export const CoursePage = () => {
   const params = useParams();
@@ -20,6 +21,7 @@ export const CoursePage = () => {
       id: string | null;
       videoId: string | null;
       order: number;
+      taskId: string | null;
     }[]
   >([]);
 
@@ -35,6 +37,7 @@ export const CoursePage = () => {
           id: lecture.id,
           videoId: lecture.id,
           order: lecture.order,
+          taskId: lecture.task_id,
         }))
       );
     } catch (error) {}
@@ -81,6 +84,7 @@ export const CoursePage = () => {
         id: null,
         videoId: null,
         order: prevLectures.length + 1,
+        taskId: null,
       },
     ]);
   };
@@ -96,7 +100,7 @@ export const CoursePage = () => {
     );
 
     await Promise.all(
-      allVideos.map(async (lecture, index) => {
+      allVideos.map(async (lecture) => {
         return addVideoToCourse({
           id: lecture.videoId,
           course_id: Number(params.id),
@@ -113,6 +117,17 @@ export const CoursePage = () => {
 
   const onCreateTask = (lectureId: string) => {
     navigate("/tasks/new/" + params.id + "/" + lectureId);
+  };
+
+  const onUpdateTask = (lectureId: string, taskId: string) => {
+    navigate("/tasks/" + params.id + "/" + lectureId + "/" + taskId);
+  };
+
+  const onDeleteTask = async (taskId: string) => {
+    try {
+      await deleteTask(taskId);
+      getLectures();
+    } catch (error) {}
   };
 
   return (
@@ -148,11 +163,35 @@ export const CoursePage = () => {
                   />
                 </td>
                 <td>
-                  <Button
-                    style={{ margin: "auto" }}
-                    title="Create task"
-                    onClick={() => onCreateTask(lecture.id!)}
-                  />
+                  {!lecture.taskId ? (
+                    <Button
+                      style={{ margin: "auto" }}
+                      title="Create task"
+                      onClick={() => onCreateTask(lecture.id!)}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                        display: "flex",
+                        margin: "auto",
+                        flexDirection: "row",
+                      }}
+                    >
+                      <Button
+                        style={{ marginRight: 10 }}
+                        title="View task"
+                        onClick={() =>
+                          onUpdateTask(lecture.id!, lecture.taskId!)
+                        }
+                      />
+                      <Button
+                        title="delete task"
+                        onClick={() => onDeleteTask(lecture.taskId!)}
+                      />
+                    </div>
+                  )}
                 </td>
               </tr>
             );

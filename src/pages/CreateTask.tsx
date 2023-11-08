@@ -4,8 +4,8 @@ import { Input } from "../components/input/Input";
 import { Button } from "../components/button/Button";
 import { CreateTaskRequest } from "../models/Tasks";
 import { uploadTask } from "../api/Tasks";
-import { Textarea } from "../components/input/textarea";
 import { useNavigate, useParams } from "react-router";
+import { Textarea } from "../components/input/Textarea";
 
 export const CreateTask = () => {
   const [title, setTitle] = useState("");
@@ -31,10 +31,8 @@ export const CreateTask = () => {
         content: content,
         lecture_id: params.lectureId!,
       };
-      uploadTask(createCourseParams).then(() => {
-        console.log("Task created");
-        navigate("/courses/" + params.courseid);
-      });
+      await uploadTask(createCourseParams);
+      navigate("/courses/" + params.courseId);
     }
   };
 

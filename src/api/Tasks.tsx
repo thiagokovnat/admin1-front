@@ -5,19 +5,12 @@ import LearningApi from "./LearningApi";
 export const uploadTask = async (params: CreateTaskRequest) => {
   try {
     const token = localStorage.getItem("token");
-    const videoUploadResponse = await LearningApi.post("/tasks", params, {
+    return await LearningApi.post("/tasks", params, {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
     });
-
-    const createLectureParams = {
-      title: params.title,
-      id: videoUploadResponse.data.id,
-    };
-
-    await LearningApi.put("/lectures/info", createLectureParams);
   } catch (error) {
     throw error;
   }
@@ -26,23 +19,12 @@ export const uploadTask = async (params: CreateTaskRequest) => {
 export const updateTask = async (params: CreateTaskRequest, taskId: string) => {
   try {
     const token = localStorage.getItem("token");
-    const videoUploadResponse = await LearningApi.put(
-      "/tasks/" + taskId,
-      params,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
-
-    const createLectureParams = {
-      title: params.title,
-      id: videoUploadResponse.data.id,
-    };
-
-    await LearningApi.put("/lectures/info", createLectureParams);
+    return await LearningApi.put("/tasks/" + taskId, params, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    });
   } catch (error) {
     throw error;
   }

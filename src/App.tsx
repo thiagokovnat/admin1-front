@@ -8,6 +8,9 @@ import SignUp from "./pages/login/SignUp";
 import { AuthProvider } from "./auth/AuthContext";
 import { CoursePage } from "./pages/CoursePage";
 import { CreateTask } from "./pages/CreateTask";
+import { AllCourses } from "./pages/AllCourses";
+import { ViewCourse } from "./pages/ViewCourse";
+import { UpdateTask } from "./pages/UpdateTask";
 
 const router = createBrowserRouter([
   {
@@ -42,8 +45,16 @@ const router = createBrowserRouter([
     element: <CreateTask />,
   },
   {
-    path: "/tasks/view/:courseId/:lectureId",
-    element: <CreateTask />,
+    path: "/tasks/:courseId/:lectureId/:taskId",
+    element: <UpdateTask />,
+  },
+  {
+    path: "/courses/all",
+    element: <AllCourses />,
+  },
+  {
+    path: "/courses/:id/view",
+    element: <ViewCourse />,
   },
 ]);
 

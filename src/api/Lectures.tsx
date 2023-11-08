@@ -1,6 +1,5 @@
 import {
   AddVideoToCourseParams,
-  CreateLectureRequest,
   Lecture,
   LectureByCourse,
   UploadVideoResponse,
@@ -60,7 +59,7 @@ export const addVideoToCourse = async (params: AddVideoToCourseParams) => {
 export const getLectures = async () => {
   try {
     const response = await LearningApi.get("/courses/list");
-    return response.data.lectures as Lecture[];
+    return response.data.courses;
   } catch (error) {
     throw error;
   }
@@ -74,7 +73,7 @@ export const getMyLectures = async () => {
         Authorization: "Bearer " + token,
       },
     });
-    return response.data.lectures as Lecture[];
+    return response.data.courses;
   } catch (error) {
     throw error;
   }

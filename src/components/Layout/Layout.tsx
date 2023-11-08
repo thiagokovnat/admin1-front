@@ -16,6 +16,8 @@ export const Layout = (props: Props) => {
           <>
             <Link to={"/"}>Home</Link>
             <div className="Layout__Separator" />
+            <Link to={"/courses/all"}>Cursos</Link>
+            <div className="Layout__Separator" />
             <Link to={"/courses"}>Mis Cursos</Link>
             <div
               style={{

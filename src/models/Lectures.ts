@@ -24,4 +24,5 @@ export interface LectureByCourse {
   id: string;
   title: string;
   order: number;
+  task_id: string | null;
 }
