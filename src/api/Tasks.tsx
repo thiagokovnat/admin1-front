@@ -1,5 +1,4 @@
-import { CreateTaskRequest, Task } from "../models/Tasks";
-import { CreateTask } from "../pages/CreateTask";
+import { CreateTaskRequest } from "../models/Tasks";
 import LearningApi from "./LearningApi";
 
 export const uploadTask = async (params: CreateTaskRequest) => {
