@@ -30,7 +30,7 @@ export const AllCourses = () => {
     <Layout>
       <div style={{ display: "flex", gap: 10, flexDirection: "column" }}>
         <Input
-          title="Search"
+          title="Buscar curso"
           onChange={(e: any) => setSearchParam(e.target.value)}
         />
         {lecturesFiltered.map((lecture) => (

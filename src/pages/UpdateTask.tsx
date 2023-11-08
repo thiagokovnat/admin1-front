@@ -71,14 +71,14 @@ export const UpdateTask = () => {
         />
       ) : (
         <>
-          <h1>Update Task</h1>
-          <Input title="Titulo" onChange={onChangeTitle} value={title} />
+          <h1>Actualizar Tarea</h1>
+          <Input title="Título" onChange={onChangeTitle} value={title} />
           <Textarea
             title="Enunciado"
             onChange={onChangeContent}
             value={content}
           />
-          <Button title="Update" onClick={onSend} />
+          <Button title="Actualizar" onClick={onSend} />
         </>
       )}
     </Layout>

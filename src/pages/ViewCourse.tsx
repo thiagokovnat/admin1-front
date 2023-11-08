@@ -30,7 +30,7 @@ export const ViewCourse = () => {
 
     return (
         <Layout>
-            <h1>View Course {id}</h1>
+            <h1>Curso {id}</h1>
             <div className="ViewCourse__Container">
                 <div className="ViewCourse__VideoContainer">
                     {renderSelectedLecture()}
