@@ -84,20 +84,20 @@ const SignUp: React.FC = () => {
               style={{ width: "100%" }}
               title="Nombre de usuario"
               errorMessage={errorMessageUsername}
-              onChange={(event) => setUsername(event.target.value)}
+              onChange={(event: any) => setUsername(event.target.value)}
             />
             <Input
               style={{ width: "100%" }}
               title="Email"
               errorMessage={errorMessageEmail}
-              onChange={(event) => setEmail(event.target.value)}
+              onChange={(event: any) => setEmail(event.target.value)}
             />
             <Input
               style={{ width: "100%" }}
               title="Contraseña"
               type="password"
               errorMessage={errorMessagePassword}
-              onChange={(event) => setPassword(event.target.value)}
+              onChange={(event: any) => setPassword(event.target.value)}
             />
 
             <Input
@@ -105,7 +105,7 @@ const SignUp: React.FC = () => {
               title="Confirmar Contraseña"
               type="password"
               errorMessage={errorMessageConfirmPassword}
-              onChange={(event) => setConfirmPassword(event.target.value)}
+              onChange={(event: any) => setConfirmPassword(event.target.value)}
             />
             {signupError && (
               <div className="Login__TextError">

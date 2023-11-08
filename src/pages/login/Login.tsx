@@ -58,14 +58,14 @@ const Login: React.FC = () => {
             style={{ width: "100%" }}
             title="Nombre de usuario"
             errorMessage={errorMessageUsername}
-            onChange={(event) => setUsername(event.target.value)}
+            onChange={(event: any) => setUsername(event.target.value)}
           />
           <Input
             style={{ width: "100%" }}
             title="Contraseña"
             type="password"
             errorMessage={errorMessagePassword}
-            onChange={(event) => setPassword(event.target.value)}
+            onChange={(event: any) => setPassword(event.target.value)}
           />
           {wrongCredentials && (
             <div className="Login__TextError">
