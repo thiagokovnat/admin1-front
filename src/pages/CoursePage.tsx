@@ -165,8 +165,11 @@ export const CoursePage = () => {
                 <td>
                   {!lecture.taskId ? (
                     <Button
-                      style={{ margin: "auto" }}
-                      title="Create task"
+                      style={{
+                        margin: "auto",
+                        backgroundColor: "rgba(255,255,255,0.7)",
+                      }}
+                      title="Crear Tarea"
                       onClick={() => onCreateTask(lecture.id!)}
                     />
                   ) : (
@@ -180,14 +183,21 @@ export const CoursePage = () => {
                       }}
                     >
                       <Button
-                        style={{ marginRight: 10 }}
-                        title="View task"
+                        style={{
+                          marginRight: 10,
+                          backgroundColor: "rgba(255,255,255,0.7)",
+                        }}
+                        title="Ver Tarea"
                         onClick={() =>
                           onUpdateTask(lecture.id!, lecture.taskId!)
                         }
                       />
                       <Button
-                        title="delete task"
+                        style={{
+                          backgroundColor: "rgba(255,0,0,0.7)",
+                          color: "white",
+                        }}
+                        title="Borrar Tarea"
                         onClick={() => onDeleteTask(lecture.taskId!)}
                       />
                     </div>
@@ -217,6 +227,9 @@ export const CoursePage = () => {
                   }
                   accept="video/*"
                 />
+              </td>
+              <td>
+                <h4>Agrega un video para asociarle una tarea!</h4>
               </td>
             </tr>
           );

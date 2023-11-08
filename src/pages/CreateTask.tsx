@@ -38,7 +38,7 @@ export const CreateTask = () => {
 
   return (
     <Layout>
-      <h1>Create Task</h1>
+      <h1>Crear Tarea</h1>
       <Input title="Titulo" onChange={onChangeTitle} />
       <Textarea title="Enunciado" onChange={onChangeContent} />
       <Button title="Crear" onClick={onSend} />

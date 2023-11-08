@@ -1,4 +1,4 @@
-import { useEffect, useState, CSSProperties } from "react";
+import { useEffect, useState } from "react";
 import { Layout } from "../components/Layout/Layout";
 import { Input } from "../components/input/Input";
 import { Button } from "../components/button/Button";
@@ -6,13 +6,7 @@ import { CreateTaskRequest } from "../models/Tasks";
 import { updateTask, getTask } from "../api/Tasks";
 import { useNavigate, useParams } from "react-router";
 import { Textarea } from "../components/input/Textarea";
-import { ClipLoader } from "react-spinners";
-
-const override: CSSProperties = {
-  display: "block",
-  margin: "0 auto",
-  borderColor: "red",
-};
+import "./CoursePage.scss";
 
 export const UpdateTask = () => {
   const [title, setTitle] = useState("");
@@ -53,7 +47,6 @@ export const UpdateTask = () => {
         lecture_id: params.lectureId!,
       };
       await updateTask(createCourseParams, params.taskId!);
-      console.log("SE ACTUALIZO LA TAREA");
       navigate("/courses/" + params.courseId);
     }
   };
@@ -61,14 +54,16 @@ export const UpdateTask = () => {
   return (
     <Layout>
       {isLoading ? (
-        <ClipLoader
-          color={"#FFFFFF"}
-          loading={isLoading}
-          cssOverride={override}
-          size={150}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <span className="loader"></span>
+        </div>
       ) : (
         <>
           <h1>Actualizar Tarea</h1>

@@ -3,9 +3,11 @@ import { Layout } from "../components/Layout/Layout";
 import { Input } from "../components/input/Input";
 import { Button } from "../components/button/Button";
 import { createCourse } from "../api/Lectures";
+import { useNavigate } from "react-router";
 
 export const CreateCourse = () => {
   const [title, setTitle] = useState("");
+  const navigator = useNavigate();
 
   const onChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
@@ -14,6 +16,7 @@ export const CreateCourse = () => {
   const onSend = async () => {
     if (title) {
       await createCourse(title);
+      navigator("/courses");
     }
   };
 
