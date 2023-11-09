@@ -109,6 +109,8 @@ export const CoursePage = () => {
         });
       })
     );
+
+    navigate("/courses");
   };
 
   useEffect(() => {
