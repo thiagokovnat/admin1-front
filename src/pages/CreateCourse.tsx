@@ -22,7 +22,7 @@ export const CreateCourse = () => {
 
   return (
     <Layout>
-      <h1>Create Course</h1>
+      <h1>Crear Curso</h1>
       <Input title="Título" onChange={onChangeTitle} />
       <Button title="Crear" onClick={onSend} />
     </Layout>
