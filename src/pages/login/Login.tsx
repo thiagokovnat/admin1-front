@@ -85,6 +85,10 @@ const Login: React.FC = () => {
             onClick={() => onLogin()}
           />
         </div>
+        <br></br>
+        <div className="Recovery__Text" >
+          Para recuperar la contraseña, escribir a fiubalearning@gmail.com
+        </div>
       </div>
     </Layout>
   );
