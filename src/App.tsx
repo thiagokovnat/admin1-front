@@ -11,6 +11,7 @@ import { CreateTask } from "./pages/CreateTask";
 import { AllCourses } from "./pages/AllCourses";
 import { ViewCourse } from "./pages/ViewCourse";
 import { UpdateTask } from "./pages/UpdateTask";
+import { ViewTask } from "./pages/ViewTask";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
     path: "/courses/:id/view",
     element: <ViewCourse />,
   },
+  {
+    path: "/task/:id",
+    element: <ViewTask />,
+  }
 ]);
 
 function App() {

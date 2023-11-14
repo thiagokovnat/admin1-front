@@ -56,3 +56,21 @@ export const getTask = async (taskId: string) => {
     throw error;
   }
 };
+
+export const createResolution = async (taskId: string, resolution: string) => {
+  try {
+    const token = localStorage.getItem("token");
+    return await LearningApi.post(
+      "/resolutions",
+      { resolution, task_id: taskId },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+}

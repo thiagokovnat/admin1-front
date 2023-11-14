@@ -1,14 +1,16 @@
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import { Layout } from "../components/Layout/Layout"
 import { useEffect, useState } from "react";
 import { LectureByCourse } from "../models/Lectures";
 import { getLecturesByCourseId } from "../api/Lectures";
 import "./ViewCourse.scss"
+import { Button } from "../components/button/Button";
 
 export const ViewCourse = () => {
     const {id} = useParams()
     const [lectures, setLectures] = useState<LectureByCourse[]>([]);
     const [selectedLecture, setSelectedLecture] = useState<LectureByCourse | null>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getLecturesByCourseId(Number(id)).then((actualLectures) => {
@@ -24,6 +26,9 @@ export const ViewCourse = () => {
             <>
                 <video controls  src={`https://staging-acp-api.onrender.com/lectures/video/${selectedLecture.id}`}/>
                 <h2>{selectedLecture.title}</h2>
+                {selectedLecture.task_id && (
+                    <Button title="Ver Tarea" onClick={() => {navigate(`/task/${selectedLecture.task_id}`)}}/>
+                )}
             </>
         )
     }
