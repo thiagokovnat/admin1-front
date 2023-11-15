@@ -3,7 +3,7 @@ import { Layout } from "../components/Layout/Layout";
 import { Input } from "../components/input/Input";
 import { Button } from "../components/button/Button";
 import { CreateTaskRequest } from "../models/Tasks";
-import { updateTask, getTask } from "../api/Tasks";
+import { updateTask, getTask, getResolutions } from "../api/Tasks";
 import { useNavigate, useParams } from "react-router";
 import { Textarea } from "../components/input/Textarea";
 import "./CoursePage.scss";
@@ -12,6 +12,12 @@ export const UpdateTask = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [seeResolutions, setSeeResolutions] = useState(false);
+  const [resolutions, setResolutions] = useState([]);
+
+  useEffect(() => {
+    setSeeResolutions(false);
+  }, []);
 
   const params = useParams();
   const navigate = useNavigate();
@@ -35,8 +41,16 @@ export const UpdateTask = () => {
     } catch (error) {}
   };
 
+  const getResolutionsF = async () => {
+    try {
+      const resolutions = await getResolutions(params.taskId!);
+      setResolutions(resolutions);
+    } catch (error) {}
+  };
+
   useEffect(() => {
     getTaskData();
+    getResolutionsF();
   }, []);
 
   const onSend = async () => {
@@ -51,20 +65,47 @@ export const UpdateTask = () => {
     }
   };
 
-  return (
-    <Layout>
-      {isLoading ? (
-        <div
-          style={{
-            display: "flex",
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <span className="loader"></span>
-        </div>
-      ) : (
+  if (isLoading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <span className="loader"></span>
+      </div>
+    );
+  }
+
+  if (seeResolutions) {
+    return (
+      <Layout>
+        <h1>Resoluciones</h1>
+        <table>
+          <tr>
+            <th>Orden</th>
+            <th>Id Alumno</th>
+            <th>Resolucion</th>
+          </tr>
+          {resolutions.map((resolution, index) => {
+            return (
+              <tr>
+                <td>{index + 1}</td>
+                <td>{resolution.user_id}</td>
+                <td>{resolution.resolution}</td>
+              </tr>
+            );
+          })}
+        </table>
+        <Button title="Volver" onClick={() => setSeeResolutions(false)} />
+      </Layout>
+    );
+  } else {
+    return (
+      <Layout>
         <>
           <h1>Actualizar Tarea</h1>
           <Input title="Título" onChange={onChangeTitle} value={title} />
@@ -73,9 +114,15 @@ export const UpdateTask = () => {
             onChange={onChangeContent}
             value={content}
           />
-          <Button title="Actualizar" onClick={onSend} />
+          <div style={{ display: "flex", flexDirection: "row", gap: 20 }}>
+            <Button title="Actualizar" onClick={onSend} />
+            <Button
+              title="Resoluciones"
+              onClick={() => setSeeResolutions(true)}
+            />
+          </div>
         </>
-      )}
-    </Layout>
-  );
+      </Layout>
+    );
+  }
 };

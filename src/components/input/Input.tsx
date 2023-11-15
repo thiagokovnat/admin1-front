@@ -24,14 +24,15 @@ export const Input = ({
   return (
     <div className="Input__Container" style={style}>
       <p className="Input__Title">{title}</p>
-      {
-        type === "longtext" ? (
-          <textarea className="Input__Input" style = {{height: 200}}>
-
-          </textarea>
-        ) : (
-          <>
-            <input
+      {type === "longtext" ? (
+        <textarea
+          className="Input__Input"
+          style={{ height: 200 }}
+          onChange={(event) => onChange(event as any)}
+        />
+      ) : (
+        <>
+          <input
             className={
               errorMessage !== "" ? "Input__ErrorContainer" : "Input__Input"
             }
@@ -39,13 +40,11 @@ export const Input = ({
             onChange={(event) => onChange(event as any)}
             type={type}
             accept={accept}
-            multiple={type === 'longtext'}
+            multiple={type === "longtext"}
           />
           <p className="Input__Error">{errorMessage}</p>
-          </>
-        )
-      }
-    
+        </>
+      )}
     </div>
   );
 };
