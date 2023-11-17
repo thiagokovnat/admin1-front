@@ -3,6 +3,7 @@ import { Layout } from "../components/Layout/Layout";
 import { useEffect, useState } from "react";
 import { Input } from "../components/input/Input";
 import { Button } from "../components/button/Button";
+import { getCourseTitleById } from "../api/Course";
 import {
   addVideoToCourse,
   getLecturesByCourseId,
@@ -14,6 +15,7 @@ import { deleteTask } from "../api/Tasks";
 export const CoursePage = () => {
   const params = useParams();
   const navigate = useNavigate();
+  const [courseTitle, setCourseTitle] = useState("")
   const [lectures, setLectures] = useState<
     {
       title: string;
@@ -25,6 +27,12 @@ export const CoursePage = () => {
     }[]
   >([]);
 
+  const fetchCourseTitle = async () => {
+    try {
+      setCourseTitle(await getCourseTitleById(Number(params.id)));
+    } catch (error) {}
+  };
+  
   const getLectures = async () => {
     try {
       const lectures = await getLecturesByCourseId(Number(params.id));
@@ -114,6 +122,7 @@ export const CoursePage = () => {
   };
 
   useEffect(() => {
+    fetchCourseTitle();
     getLectures();
   }, []);
 
@@ -134,7 +143,7 @@ export const CoursePage = () => {
 
   return (
     <Layout>
-      <h2>Curso {params.id}</h2>
+      <h2>{courseTitle}</h2>
       <Button title="Agregar Video" onClick={onAddLecture} />
       <table>
         <tr>

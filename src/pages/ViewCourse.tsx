@@ -2,17 +2,26 @@ import { useNavigate, useParams } from "react-router"
 import { Layout } from "../components/Layout/Layout"
 import { useEffect, useState } from "react";
 import { LectureByCourse } from "../models/Lectures";
+import { getCourseTitleById } from "../api/Course";
 import { getLecturesByCourseId } from "../api/Lectures";
 import "./ViewCourse.scss"
 import { Button } from "../components/button/Button";
 
 export const ViewCourse = () => {
     const {id} = useParams()
+    const [courseTitle, setCourseTitle] = useState("")
     const [lectures, setLectures] = useState<LectureByCourse[]>([]);
     const [selectedLecture, setSelectedLecture] = useState<LectureByCourse | null>(null);
     const navigate = useNavigate();
 
+    const fetchCourseTitle = async () => {
+        try {
+          setCourseTitle(await getCourseTitleById(Number(id)));
+        } catch (error) {}
+    };
+
     useEffect(() => {
+        fetchCourseTitle();
         getLecturesByCourseId(Number(id)).then((actualLectures) => {
             actualLectures.length > 0 && setSelectedLecture(actualLectures[0])
             setLectures(actualLectures.sort((a, b) => a.order - b.order))
@@ -35,7 +44,7 @@ export const ViewCourse = () => {
 
     return (
         <Layout>
-            <h1>Curso {id}</h1>
+            <h1>{courseTitle}</h1>
             <div className="ViewCourse__Container">
                 <div className="ViewCourse__VideoContainer">
                     {renderSelectedLecture()}
