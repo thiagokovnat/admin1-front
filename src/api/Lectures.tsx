@@ -26,12 +26,12 @@ export const uploadVideo = async (file: File) => {
   }
 };
 
-export const createCourse = (title: string) => {
+export const createCourse = (title: string/*, file: File*/) => {
   try {
     const token = localStorage.getItem("token");
     return LearningApi.post(
       "/courses",
-      { title },
+      { title/*, file*/ },
       {
         headers: {
           Authorization: "Bearer " + token,
