@@ -123,6 +123,20 @@ export const getResolutionByUser = async (taskId: string, userId: string) => {
   }
 };
 
+export const getOwnResolution = async (taskId: string) => {
+  try {
+    const token = localStorage.getItem("token");
+    const results = await LearningApi.get(`/resolutions/${taskId}/me`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    });
+    return results.data.resolutions;
+  } catch (error) {
+    throw error;
+  }
+};
 export const gradeResolution = async (taskId: string, userId: string, grade: number ) => {
   try {
     const token = localStorage.getItem("token");
