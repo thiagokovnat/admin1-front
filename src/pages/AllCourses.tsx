@@ -37,6 +37,7 @@ export const AllCourses = () => {
         />
         {lecturesFiltered.map((lecture) => (
           <CourseView
+            key={lecture.id}
             lecture={lecture}
             onClick={() => {
               onCourseSelect(lecture);

@@ -87,14 +87,14 @@ export const UpdateTask = () => {
         <table>
           <tr>
             <th>Orden</th>
-            <th>Id Alumno</th>
+            <th>Alumno</th>
             <th>Resolucion</th>
           </tr>
           {resolutions.map((resolution, index) => {
             return (
               <tr>
                 <td>{index + 1}</td>
-                <td>{resolution.user_id}</td>
+                <td>{resolution.user.username}</td>
                 <td>{resolution.resolution}</td>
               </tr>
             );
