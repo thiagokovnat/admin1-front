@@ -75,6 +75,24 @@ export const createResolution = async (taskId: string, resolution: string) => {
   }
 };
 
+export const editResolution = async (taskId: string, resolution: string) => {
+  try {
+    const token = localStorage.getItem("token");
+    return await LearningApi.put(
+      "/resolutions/" + taskId,
+      { resolution, task_id: taskId },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getResolutions = async (taskId: string) => {
   try {
     const token = localStorage.getItem("token");

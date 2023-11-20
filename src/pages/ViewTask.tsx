@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { Layout } from "../components/Layout/Layout";
 import { useEffect, useState } from "react";
-import { createResolution, getTask } from "../api/Tasks";
+import { createResolution, editResolution, getTask } from "../api/Tasks";
 import { Input } from "../components/input/Input";
 import { Button } from "../components/button/Button";
 
@@ -13,8 +13,15 @@ export const ViewTask = () => {
   const navigate = useNavigate();
 
   const sendResolution = async () => {
-    await createResolution(id!, resolution);
-    navigate("/");
+    try {
+      await createResolution(id!, resolution);
+      navigate("/");
+    } catch (error) {
+      if (error.response.status === 409) {
+        await editResolution(id!, resolution);
+        navigate("/");
+      }
+    }
   };
 
   useEffect(() => {

@@ -1,7 +1,4 @@
-import { useState } from "react";
-import { uploadReview } from "../../api/Course";
-import { Box, Modal, TextareaAutosize, Typography } from "@mui/material";
-import { CourseQualification } from "./CourseQualification";
+import { Box, Modal, Typography } from "@mui/material";
 
 interface ReviewModalProps {
   reviews: any[];
@@ -10,7 +7,7 @@ interface ReviewModalProps {
 }
 
 const style = {
-  position: "absolute" as "absolute",
+  position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
