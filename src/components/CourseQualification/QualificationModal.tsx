@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { uploadReview } from "../../api/Course";
-import { Box, Modal, TextareaAutosize, Typography } from "@mui/material";
+import { Box, Modal, Typography } from "@mui/material";
 import { CourseQualification } from "./CourseQualification";
 
 interface QualificationModalProps {
@@ -11,7 +11,7 @@ interface QualificationModalProps {
 }
 
 const style = {
-  position: "absolute" as "absolute",
+  position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
