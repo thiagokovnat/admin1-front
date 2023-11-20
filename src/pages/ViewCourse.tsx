@@ -5,7 +5,6 @@ import { LectureByCourse } from "../models/Lectures";
 import { getCourseTitleById } from "../api/Course";
 import { getLecturesByCourseId } from "../api/Lectures";
 import "./ViewCourse.scss"
-import { Button } from "../components/button/Button";
 import { Comment, MappedComment } from "../models/Comments";
 import { createComment, getCommentForLecture } from "../api/Comments";
 import { Input } from "../components/input/Input";
