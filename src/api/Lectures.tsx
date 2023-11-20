@@ -26,18 +26,31 @@ export const uploadVideo = async (file: File) => {
   }
 };
 
-export const createCourse = (title: string/*, file: File*/) => {
+export const createCourse = async (title: string) => {
   try {
     const token = localStorage.getItem("token");
-    return LearningApi.post(
-      "/courses",
-      { title/*, file*/ },
+    const results = await LearningApi.post("/courses",
+      { title },
       {
         headers: {
           Authorization: "Bearer " + token,
         },
       }
     );
+    return results.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateCoverCourse = async (id: string, cover: File) => {
+  try {
+    const token = localStorage.getItem("token");
+    return await LearningApi.patch(`/courses/${id}/covers`, { cover }, {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
   } catch (error) {
     throw error;
   }
