@@ -9,3 +9,12 @@ export interface Task {
   content: string;
   id: string;
 }
+
+export interface Resolution{
+  user: {
+    id: number,
+    username: string
+  },
+  resolution: string,
+  grade: number
+}

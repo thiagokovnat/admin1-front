@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { Layout } from "../components/Layout/Layout";
 import { Input } from "../components/input/Input";
 import { Button } from "../components/button/Button";
-import { CreateTaskRequest } from "../models/Tasks";
+import { CreateTaskRequest, Resolution} from "../models/Tasks";
 import { updateTask, getTask, getResolutions } from "../api/Tasks";
 import { useNavigate, useParams } from "react-router";
 import { Textarea } from "../components/input/Textarea";
+import {GradeModal} from "../components/TaskGrade/GradeModal";
 import "./CoursePage.scss";
 
 export const UpdateTask = () => {
@@ -14,6 +15,16 @@ export const UpdateTask = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [seeResolutions, setSeeResolutions] = useState(false);
   const [resolutions, setResolutions] = useState([]);
+  const [openGradeModal, setOpenGradeModal] = useState(false);
+  const [gradeResolution, setGradeResolution] = useState<Resolution>({
+    user: {
+      id: -1,
+      username: ""
+    },
+    resolution: "string",
+    grade: -1})
+
+
 
   useEffect(() => {
     setSeeResolutions(false);
@@ -44,9 +55,11 @@ export const UpdateTask = () => {
   const getResolutionsF = async () => {
     try {
       const resolutions = await getResolutions(params.taskId!);
+      console.log(resolutions);
       setResolutions(resolutions);
     } catch (error) {}
   };
+
 
   useEffect(() => {
     getTaskData();
@@ -89,6 +102,7 @@ export const UpdateTask = () => {
             <th>Orden</th>
             <th>Alumno</th>
             <th>Resolucion</th>
+            <th>Calificacion</th>
           </tr>
           {resolutions.map((resolution, index) => {
             return (
@@ -96,9 +110,30 @@ export const UpdateTask = () => {
                 <td>{index + 1}</td>
                 <td>{resolution.user.username}</td>
                 <td>{resolution.resolution}</td>
+                <td>
+                    { resolution.grade < 0 ? 
+                        <button type="button" 
+                        className="btn btn-default" 
+                        onClick={() => {
+                          setGradeResolution(resolution)
+                          setOpenGradeModal(true);
+                        }}
+                        >Calificar</button> 
+                        : resolution.grade 
+                    }
+                </td>
               </tr>
             );
-          })}
+          })
+        }
+        <GradeModal
+          taskId={params.taskId}
+          userId={gradeResolution.user.id.toString()}
+          open={openGradeModal}
+          close={() => {
+            setOpenGradeModal(false);
+          }}
+        />
         </table>
         <Button title="Volver" onClick={() => setSeeResolutions(false)} />
       </Layout>

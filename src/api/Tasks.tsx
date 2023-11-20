@@ -1,4 +1,4 @@
-import { CreateTaskRequest } from "../models/Tasks";
+import { CreateTaskRequest, Resolution } from "../models/Tasks";
 import LearningApi from "./LearningApi";
 
 export const uploadTask = async (params: CreateTaskRequest) => {
@@ -93,7 +93,7 @@ export const editResolution = async (taskId: string, resolution: string) => {
   }
 };
 
-export const getResolutions = async (taskId: string) => {
+export const getResolutions = async (taskId: string): Promise<Resolution[]> => {
   try {
     const token = localStorage.getItem("token");
     const results = await LearningApi.get(`/resolutions/${taskId}/all`, {
@@ -122,11 +122,12 @@ export const getResolutionByUser = async (taskId: string, userId: string) => {
     throw error;
   }
 };
-export const gradeResolution = async (taskId: string, grade: number ) => {
+
+export const gradeResolution = async (taskId: string, userId: string, grade: number ) => {
   try {
     const token = localStorage.getItem("token");
     return await LearningApi.post(
-      `/resolutions/${taskId}/grades`,
+      `/resolutions/${taskId}/user/${userId}/grades`,
       { grade:grade},
       {
         headers: {
