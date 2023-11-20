@@ -47,3 +47,120 @@
     gap: 5px;
     flex: 0.3;
 }
+
+.ViewCourse__Comment{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(1, 104, 173, 0.8);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    .ViewCourse__Comment__Title{
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: white;
+        margin: 0px;
+    }
+    .ViewCourse__Comment__Content{
+        font-size: 1rem;
+        font-weight: 500;
+    }
+    .ViewCourse__Comment__Author{
+        font-size: 1rem;
+        font-weight: 500;
+    }
+}
+
+.ViewCourse__Button{
+    // Do a modern style button for replying a comment
+    background-color: rgba(1, 104, 173, 0.8);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover{
+        transform: scale(1.001);
+        background-color: white;
+        color: black;
+    }
+
+}
+
+.ViewCourse__ReplyInput{
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    font-size: 1.2rem;
+    transition: 0.2s;
+    color: white;
+    margin: 10px 0px;
+    background-color: rgba(1, 104, 173, 0.8);
+    &:focus {
+        border: 1px solid rgba(0, 0, 0, 0.5);
+    }
+}
+
+.ViewCourse__SendButton{
+    display: inline-block;
+    padding: 20px 20px;
+    border: 0;
+    text-decoration: none;
+    border-radius: 15px;
+    background-color: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(30px);
+    color: rgba(255,255,255,0.8);
+    font-size: 14px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    &:hover{
+        background-color: rgba(255,255,255,0.2);
+    }
+    margin-bottom: 20px;
+}
+
+.ViewCourse__CancelButton{
+    display: inline-block;
+    padding: 20px 20px;
+    border: 0;
+    text-decoration: none;
+    border-radius: 15px;
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(30px);
+    color: rgba(255,255,255,0.8);
+    font-size: 14px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    &:hover{
+        background-color: rgba(255,255,255,0.2);
+    };
+    margin-bottom: 20px;
+}
+
+.ViewCourse__WhiteButton{
+    display: inline-block;
+    padding: 20px 20px;
+    border: 0;
+    text-decoration: none;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(30px);
+    color: rgba(255,255,255,0.8);
+    font-size: 14px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    &:hover{
+        background-color: rgba(255,255,255,0.2);
+    }
+}
