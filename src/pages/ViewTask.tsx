@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { Layout } from "../components/Layout/Layout";
 import { useEffect, useState } from "react";
-import { createResolution, editResolution, getTask } from "../api/Tasks";
+import { createResolution, editResolution, getTask, getOwnResolution } from "../api/Tasks";
 import { Input } from "../components/input/Input";
 import { Button } from "../components/button/Button";
 
@@ -10,6 +10,7 @@ export const ViewTask = () => {
 
   const [task, setTask] = useState(null);
   const [resolution, setResolution] = useState("");
+  const [grade, setGrade] = useState(0);
   const navigate = useNavigate();
 
   const sendResolution = async () => {
@@ -30,6 +31,12 @@ export const ViewTask = () => {
     });
   }, []);
 
+  useEffect(() => {
+    getOwnResolution(id /*,userId*/).then((resolution) => {
+      setGrade(resolution.grade);
+    });
+  }, []);
+
   return (
     <Layout>
       <h1>{task && task.title}</h1>
@@ -42,6 +49,7 @@ export const ViewTask = () => {
           setResolution(e.target.value)
         }
       />
+      <h2>{grade <= 0? "Tarea aun no corregida":`Su nota es ${grade}`}</h2>
       <Button title="Enviar" onClick={sendResolution} />
     </Layout>
   );
