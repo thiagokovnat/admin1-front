@@ -107,3 +107,35 @@ export const getResolutions = async (taskId: string) => {
     throw error;
   }
 };
+
+export const getResolutionByUser = async (taskId: string, userId: string) => {
+  try {
+    const token = localStorage.getItem("token");
+    const results = await LearningApi.get(`/resolutions/${taskId}/user/${userId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    });
+    return results.data.resolutions;
+  } catch (error) {
+    throw error;
+  }
+};
+export const gradeResolution = async (taskId: string, grade: number ) => {
+  try {
+    const token = localStorage.getItem("token");
+    return await LearningApi.post(
+      `/resolutions/${taskId}/grades`,
+      { grade:grade},
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+};
