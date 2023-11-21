@@ -49,7 +49,7 @@ export const ViewTask = () => {
           setResolution(e.target.value)
         }
       />
-      <h2>{grade <= 0? "Tarea aun no corregida":`Su nota es ${grade}`}</h2>
+      <h2>{grade <= 0 ? "Tarea aun no corregida":`Su nota es ${grade}`}</h2>
       <Button title="Enviar" onClick={sendResolution} />
     </Layout>
   );
