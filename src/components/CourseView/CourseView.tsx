@@ -1,8 +1,8 @@
 import { Lecture } from "../../models/Lectures";
-import fiubaLogo from "/Logo-fiuba_big.png";
 import "./CourseView.scss";
-import { useEffect, useState } from "react";
-import { getReviews } from "../../api/Course";
+import { useEffect, useState,} from "react";
+import { useParams } from "react-router";
+import { getReviews, getCoverCourseURL} from "../../api/Course";
 import { ReviewModal } from "../CourseQualification/ReviewModal";
 import { QualificationModal } from "../CourseQualification/QualificationModal";
 
@@ -24,6 +24,16 @@ export const CourseView = ({
   const [openReviewModal, setOpenReviewModal] = useState(false);
   const [openQualificationModal, setOpenQualificationModal] = useState(false);
 
+  const [cover, setCover] = useState("");
+
+  const fetchCourseCover = async () => {
+    try {
+      setCover(await getCoverCourseURL(lecture.id));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
   const getAvaregeQualification = async () => {
     try {
       const reviews = await getReviews(lecture.id);
@@ -39,7 +49,8 @@ export const CourseView = ({
     }
   };
 
-  useEffect(() => {
+  useEffect( () => {
+    fetchCourseCover();
     getAvaregeQualification();
   }, []);
 
@@ -106,8 +117,8 @@ export const CourseView = ({
             </div>
           </div>
         )}
-
-        <img src={fiubaLogo} alt="" className="CourseView__BackgroundImage" />
+        
+        <img src={cover} alt="" className="CourseView__BackgroundImage" />
       </div>
       <ReviewModal
         reviews={reviews}

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Layout } from "../components/Layout/Layout";
 import { Input } from "../components/input/Input";
 import { Button } from "../components/button/Button";
-import { createCourse, updateCoverCourse } from "../api/Lectures";
+import { createCourse, updateCoverCourse } from "../api/Course";
 import { useNavigate } from "react-router";
 
 export const CreateCourse = () => {
