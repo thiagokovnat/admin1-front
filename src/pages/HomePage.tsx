@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
             <h1>Mas Populares</h1>
             <div className="Home__CarouselList">
               {
-                [...Array(5)].map((each, index) => (
+                [...Array(5)].map((_, index) => (
                   <div className="Home__CarouselItem">
                     <div className="Home__GradientItem">
                       <h3 className="Home__ItemTitle">{`React 10${index + 1}`}</h3>
