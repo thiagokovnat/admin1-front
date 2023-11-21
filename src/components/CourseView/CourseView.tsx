@@ -1,7 +1,6 @@
 import { Lecture } from "../../models/Lectures";
 import "./CourseView.scss";
 import { useEffect, useState,} from "react";
-import { useParams } from "react-router";
 import { getReviews, getCoverCourseURL} from "../../api/Course";
 import { ReviewModal } from "../CourseQualification/ReviewModal";
 import { QualificationModal } from "../CourseQualification/QualificationModal";
