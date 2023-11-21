@@ -132,7 +132,7 @@ export const getOwnResolution = async (taskId: string) => {
         Authorization: "Bearer " + token,
       },
     });
-    return results.data.resolutions;
+    return results.data;
   } catch (error) {
     throw error;
   }
